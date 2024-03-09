@@ -1,0 +1,34 @@
+stages:
+  
+  environment:
+    cmd: bash src/0_environment.sh
+    deps:
+      - src/0_environment.sh
+      - requirements.txt
+  
+  download:
+    cmd: venv/bin/python src/1_download.py
+    deps: 
+      - https://files.toxplanet.com/cpdb/CPDB-tab.html
+      - src/1_download.py
+    outs:
+      - download/
+
+  process:
+    cmd: venv/bin/python src/2_process.py
+    deps:
+      - download/
+      - src/2_process.py
+    outs:
+      - brick/chemname.parquet
+      - brick/cit.parquet
+      - brick/journal.parquet
+      - brick/litdose.parquet
+      - brick/lit.parquet
+      - brick/ncintp.parquet
+      - brick/ncntdose.parquet
+      - brick/route.parquet
+      - brick/species.parquet
+      - brick/strain.parquet
+      - brick/tissue.parquet
+      - brick/tumor.parquet

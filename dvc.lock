@@ -1,0 +1,91 @@
+schema: '2.0'
+stages:
+  environment:
+    cmd: bash src/0_environment.sh
+    deps:
+    - path: requirements.txt
+      hash: md5
+      md5: a86947c36822ea160dddf389584c7682
+      size: 93
+    - path: src/0_environment.sh
+      hash: md5
+      md5: 00d4d7d8e5eab3b3c435d6b6f5400228
+      size: 450
+  download:
+    cmd: venv/bin/python src/1_download.py
+    deps:
+    - path: https://files.toxplanet.com/cpdb/CPDB-tab.html
+      hash: md5
+      checksum: '"752691ab120ba3bd7ed081120d506492"'
+      size: 7842
+    - path: src/1_download.py
+      hash: md5
+      md5: 0bee97957eb64d56ba0ee99264a483f4
+      size: 1008
+    outs:
+    - path: download/
+      hash: md5
+      md5: ff1283a60df335e1384a58f05c66defc.dir
+      size: 13240832
+      nfiles: 12
+  process:
+    cmd: venv/bin/python src/2_process.py
+    deps:
+    - path: download/
+      hash: md5
+      md5: ff1283a60df335e1384a58f05c66defc.dir
+      size: 13240832
+      nfiles: 12
+    - path: src/2_process.py
+      hash: md5
+      md5: adb98597a7743f298237f8f3b92ed27c
+      size: 1193
+    outs:
+    - path: brick/chemname.parquet
+      hash: md5
+      md5: 921c6197bfbef682ff522a92b06f694c
+      size: 58271
+    - path: brick/cit.parquet
+      hash: md5
+      md5: aab8d756a92c3665baa31aef4100c894
+      size: 48832
+    - path: brick/journal.parquet
+      hash: md5
+      md5: 408e38869429b3fd487f2a08748a2782
+      size: 9632
+    - path: brick/lit.parquet
+      hash: md5
+      md5: 95e1cc19592c777ab032ae345ebeaf3c
+      size: 361301
+    - path: brick/litdose.parquet
+      hash: md5
+      md5: f67dff5b945bbc74fd850fd916cf8c25
+      size: 182421
+    - path: brick/ncintp.parquet
+      hash: md5
+      md5: 18e60cb1ce4844a09b5539e3e0370533
+      size: 226058
+    - path: brick/ncntdose.parquet
+      hash: md5
+      md5: 8b517a257528b954931f15d83726eb74
+      size: 129902
+    - path: brick/route.parquet
+      hash: md5
+      md5: 9cae4496e75c22c77cfceddb9a3d7344
+      size: 2365
+    - path: brick/species.parquet
+      hash: md5
+      md5: c3672753cf91e92857653a4f081c7443
+      size: 2198
+    - path: brick/strain.parquet
+      hash: md5
+      md5: 788b712e0521882784a4d009d5efc517
+      size: 6261
+    - path: brick/tissue.parquet
+      hash: md5
+      md5: 0082da719c6249e631ad915d386a4e9a
+      size: 5952
+    - path: brick/tumor.parquet
+      hash: md5
+      md5: bd1bd312429097ec219a3db96d6ec5be
+      size: 8906
