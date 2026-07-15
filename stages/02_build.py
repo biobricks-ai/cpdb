@@ -10,6 +10,24 @@ import requests
 import time
 import json
 
+# Literal placeholder tokens that encode a MISSING structure (not a real SMILES).
+# These arise because unmapped CAS -> NaN -> astype(str) -> literal 'nan'.
+# Normalized to NULL so validity is computed only over genuine structures.
+# Exact-token match (after strip); never a substring -- real SMILES untouched.
+_SMILES_MISSING = {'-', '--', '.', 'nan', 'no data', 'none', ''}
+
+def null_smiles_placeholders(df: pd.DataFrame) -> pd.DataFrame:
+    """Replace exact missing-value placeholder tokens with None in SMILES columns."""
+    for col in df.columns:
+        if 'smiles' in col.lower():
+            before = df[col].notna().sum()
+            df[col] = df[col].map(
+                lambda v: None if (v is None or str(v).strip().lower() in _SMILES_MISSING) else v
+            )
+            after = df[col].notna().sum()
+            print(f"  Nulled {before - after} placeholder(s) in column {col}")
+    return df
+
 def cas_to_smiles_batch(cas_numbers: list, batch_size: int = 100) -> dict:
     """Convert CAS numbers to SMILES via PubChem API in batches."""
     cas_to_smiles = {}
@@ -111,12 +129,14 @@ def main():
     # Convert object columns to string for parquet compatibility
     for col in merged_df.select_dtypes(include=['object']).columns:
         merged_df[col] = merged_df[col].astype(str)
+    merged_df = null_smiles_placeholders(merged_df)
 
     # Save chemicals table
     print("Saving chemicals table...")
     chem_out = chem_df.copy()
     for col in chem_out.select_dtypes(include=['object']).columns:
         chem_out[col] = chem_out[col].astype(str)
+    chem_out = null_smiles_placeholders(chem_out)
     chem_out.to_parquet(brick_path / "chemicals.parquet", index=False)
     print(f"  Saved {len(chem_out)} chemicals")
 

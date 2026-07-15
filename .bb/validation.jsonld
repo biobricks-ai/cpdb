@@ -1,0 +1,164 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "prov:Entity",
+  "schema:name": "cpdb validation report",
+  "prov:generatedAtTime": "2026-07-15T20:24:29Z",
+  "bb:validator": "tools/bb_validate.py",
+  "bb:verdict": "PASS",
+  "bb:summary": {
+    "n_parquet_files": 2,
+    "total_rows": 24550,
+    "total_bytes": 499224,
+    "note": ""
+  },
+  "bb:deterministic_checks": [
+    {
+      "file": "bioassays.parquet",
+      "path": "cpdb/brick/bioassays.parquet",
+      "rows": 23003,
+      "cols": 15,
+      "bytes": 414938,
+      "columns": [
+        {
+          "name": "idnum",
+          "type": "int64"
+        },
+        {
+          "name": "chemcode",
+          "type": "string"
+        },
+        {
+          "name": "species",
+          "type": "string"
+        },
+        {
+          "name": "strain",
+          "type": "string"
+        },
+        {
+          "name": "sex",
+          "type": "string"
+        },
+        {
+          "name": "route",
+          "type": "string"
+        },
+        {
+          "name": "tissue",
+          "type": "string"
+        },
+        {
+          "name": "tumor",
+          "type": "string"
+        },
+        {
+          "name": "carcinogenicity_opinion",
+          "type": "string"
+        },
+        {
+          "name": "td50",
+          "type": "double"
+        },
+        {
+          "name": "pval",
+          "type": "double"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "chemical_name",
+          "type": "string"
+        },
+        {
+          "name": "cas",
+          "type": "string"
+        },
+        {
+          "name": "smiles",
+          "type": "string"
+        }
+      ],
+      "null_fraction": {
+        "idnum": 0.0,
+        "chemcode": 0.0,
+        "species": 0.0,
+        "strain": 0.0,
+        "sex": 0.0,
+        "route": 0.0,
+        "tissue": 0.0,
+        "tumor": 0.0,
+        "carcinogenicity_opinion": 0.0,
+        "td50": 0.0,
+        "pval": 0.0,
+        "source": 0.0,
+        "chemical_name": 0.0,
+        "cas": 0.0,
+        "smiles": 0.03117
+      },
+      "all_null_columns": [],
+      "sample_rows": 23003,
+      "sample_dup_fraction": 0.0,
+      "sample_constant_columns": [],
+      "smiles_column": "smiles",
+      "smiles_valid_fraction_sampled": 1.0,
+      "smiles_sampled": 2000,
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "file": "chemicals.parquet",
+      "path": "cpdb/brick/chemicals.parquet",
+      "rows": 1547,
+      "cols": 5,
+      "bytes": 84286,
+      "columns": [
+        {
+          "name": "chemcode",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "sortordr",
+          "type": "int64"
+        },
+        {
+          "name": "cas",
+          "type": "string"
+        },
+        {
+          "name": "smiles",
+          "type": "string"
+        }
+      ],
+      "null_fraction": {
+        "chemcode": 0.0,
+        "name": 0.0,
+        "sortordr": 0.0,
+        "cas": 0.0,
+        "smiles": 0.04331
+      },
+      "all_null_columns": [],
+      "sample_rows": 1547,
+      "sample_dup_fraction": 0.0,
+      "sample_constant_columns": [],
+      "smiles_column": "smiles",
+      "smiles_valid_fraction_sampled": 1.0,
+      "smiles_sampled": 1480,
+      "warnings": [],
+      "status": "PASS"
+    }
+  ],
+  "bb:datapackage_conformance": {
+    "issues": [],
+    "conforms": true
+  },
+  "bb:web_validation": null
+}

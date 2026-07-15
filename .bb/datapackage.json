@@ -1,0 +1,99 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "tables": [
+    {
+      "url": "brick/bioassays.parquet",
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "idnum",
+            "datatype": "integer"
+          },
+          {
+            "name": "chemcode",
+            "datatype": "string"
+          },
+          {
+            "name": "species",
+            "datatype": "string"
+          },
+          {
+            "name": "strain",
+            "datatype": "string"
+          },
+          {
+            "name": "sex",
+            "datatype": "string"
+          },
+          {
+            "name": "route",
+            "datatype": "string"
+          },
+          {
+            "name": "tissue",
+            "datatype": "string"
+          },
+          {
+            "name": "tumor",
+            "datatype": "string"
+          },
+          {
+            "name": "carcinogenicity_opinion",
+            "datatype": "string"
+          },
+          {
+            "name": "td50",
+            "datatype": "number"
+          },
+          {
+            "name": "pval",
+            "datatype": "number"
+          },
+          {
+            "name": "source",
+            "datatype": "string"
+          },
+          {
+            "name": "chemical_name",
+            "datatype": "string"
+          },
+          {
+            "name": "cas",
+            "datatype": "string"
+          },
+          {
+            "name": "smiles",
+            "datatype": "string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "brick/chemicals.parquet",
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "chemcode",
+            "datatype": "string"
+          },
+          {
+            "name": "name",
+            "datatype": "string"
+          },
+          {
+            "name": "sortordr",
+            "datatype": "integer"
+          },
+          {
+            "name": "cas",
+            "datatype": "string"
+          },
+          {
+            "name": "smiles",
+            "datatype": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
